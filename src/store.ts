@@ -1,4 +1,3 @@
-import { intercept, observe } from 'mobx';
 import { Instance, onSnapshot, SnapshotIn, types } from 'mobx-state-tree';
 import { createContext } from 'react';
 
@@ -85,16 +84,6 @@ export type IRootModel = Instance<typeof RootModel>;
 export const rootModel = RootModel.create();
 
 (window as any).rootModel = rootModel;
-
-intercept(rootModel, (change) => {
-  console.log(change);
-
-  return change;
-});
-
-observe(rootModel, 'users', (change) => {
-  console.log('LastName changed to ', change);
-});
 
 export const StoreContext = createContext(rootModel);
 
